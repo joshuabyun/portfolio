@@ -29,14 +29,21 @@ function content_template(parent){
             'background-size' : 'cover',
             'background-repeat' : 'no-repeat'
         });
-        this.click_handler(this.parent);
+        //this.click_handler();
+        var clickObj = this.click_handler.bind(this);
+        this.dom_element.click(clickObj);
         return this.dom_element;
     };
-    this.click_handler = function(parent){
-        this.dom_element.click(function(){
-            parent.handle_click($(this));
-        })
+    this.click_handler = function(){
+        //this.dom_element.click(function(){
+        this.parent.handle_click(this);
+        //})
     };
+    this.changeCssClass =function(cssClass){
+        //need to get the current class
+
+        //console.log it
+    }
 }
 function content_mgr_template(){
     this.dom_element;
@@ -55,6 +62,7 @@ function content_mgr_template(){
     };
     this.handle_click = function(clickedItem){
         console.log('clickedItem',clickedItem);
+
     };
 }
 

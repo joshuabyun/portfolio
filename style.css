@@ -5,15 +5,15 @@ body{
     width:100vw;
     height:100vh;
 }
-#contentContainer > *{
-    font-size: initial;
-}
+/*#contentContainer > *{*/
+    /*font-size: initial;*/
+/*}*/
 
 #contentContainer{
     height:100%;
     width:100%;
     box-sizing: border-box;
-    border:1px solid red;
+    /*border:1px solid red;*/
 }
 #headerDiv{
     height:10%;
@@ -21,7 +21,7 @@ body{
     position: relative;
     display: block;
     box-sizing: border-box;
-    border:1px solid blue;
+    /*border:1px solid blue;*/
 }
 .content{
     height:45%;
@@ -29,5 +29,13 @@ body{
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    border:1px solid red;
+    /*border:1px solid red;*/
+}
+.biggerContent{
+    height:100%;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    /*border:1px solid red;*/
 }
