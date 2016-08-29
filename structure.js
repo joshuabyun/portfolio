@@ -29,12 +29,12 @@ function content_template(parent){
             'background-size' : 'cover',
             'background-repeat' : 'no-repeat'
         });
-        this.click_handler();
+        this.click_handler(this.parent);
         return this.dom_element;
     };
-    this.click_handler = function(){
+    this.click_handler = function(parent){
         this.dom_element.click(function(){
-            console.log($(this));
+            parent.handle_click($(this));
         })
     };
 }
@@ -46,17 +46,16 @@ function content_mgr_template(){
         this.dom_element = $(dom_element_id);
     };
     this.create_content_divs = function(contentProfile){
-        var div = [];//to hold actual dom element
         for(var i in contentProfile){
             var obj = new content_template(this);
-            div.push(obj.init(contentProfile[i]));
             this.dom_element.append(obj.init(contentProfile[i]));
             this.contentDivObj.push(obj);//to hold actual objects
         }
-        console.log('div',div);
         console.log('this.contentDivObj',this.contentDivObj);
-    }
-
+    };
+    this.handle_click = function(clickedItem){
+        console.log('clickedItem',clickedItem);
+    };
 }
 
 

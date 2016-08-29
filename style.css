@@ -10,7 +10,7 @@ body{
 }
 
 #contentContainer{
-    height:90%;
+    height:100%;
     width:100%;
     box-sizing: border-box;
     border:1px solid red;
@@ -24,7 +24,7 @@ body{
     border:1px solid blue;
 }
 .content{
-    height:50%;
+    height:45%;
     width: 50%;
     position: relative;
     display: inline-block;
