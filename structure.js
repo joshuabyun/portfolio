@@ -14,7 +14,12 @@ function content_template(parent){
     this.parent = parent;
     this.dom_element;
     this.contentProfile;
-
+    this.mdDivClicked = true;
+    this.state = {
+        large : 'biggerContent',
+        medium : 'content',
+        small : 'small'
+    };
     this.init = function(contentProfile){
         //expect contentProfile as the actual value of a certain key inside var contentProfile such as about_me, skills, applications, contact_me
         return this.create_main_dom_element(contentProfile);
@@ -22,7 +27,7 @@ function content_template(parent){
     this.create_main_dom_element = function(contentProfile){
         this.contentProfile = contentProfile;
         this.dom_element = $('<div>',{
-            'class': 'content',
+            'class': this.state.medium,
             'id' : this.contentProfile.id,
         }).css({
             'background-image':'url('+this.contentProfile.background+')',
@@ -35,15 +40,36 @@ function content_template(parent){
         return this.dom_element;
     };
     this.click_handler = function(){
-        //this.dom_element.click(function(){
         this.parent.handle_click(this);
-        //})
     };
-    this.changeCssClass =function(cssClass){
-        //need to get the current class
+    this.mdDivtoSm = function(){
+        this.dom_element.remove();
 
-        //console.log it
+        // this.dom_element.removeClass(this.state.medium);
+        // this.dom_element.addClass(this.state.small);
+    };
+    this.smDivtoMd = function(){
+        $('#contentContainer').append(this.dom_element);
+        var clickObj = this.click_handler.bind(this);
+        this.dom_element.click(clickObj);
+
+        // this.dom_element.removeClass(this.state.small);
+        // this.dom_element.addClass(this.state.medium);
     }
+    this.mdDivtoLg = function(){
+        this.mdDivClicked = false;
+
+
+        this.dom_element.removeClass(this.state.medium);
+        this.dom_element.addClass(this.state.large);
+    };
+    this.lgDivtoMd = function(){
+        this.mdDivClicked = true;
+
+
+        this.dom_element.removeClass(this.state.large);
+        this.dom_element.addClass(this.state.medium);
+    };
 }
 function content_mgr_template(){
     this.dom_element;
@@ -61,9 +87,41 @@ function content_mgr_template(){
         console.log('this.contentDivObj',this.contentDivObj);
     };
     this.handle_click = function(clickedItem){
-        console.log('clickedItem',clickedItem);
+        console.log('clicked',clickedItem.dom_element);
+        var notClickedItems = this.findNonClickedItems(clickedItem);//returned an array of objects
+        //clickedItem is an object
+        this.callEventsByStatus(clickedItem,notClickedItems);
+        //differentiated clicked and not clicked objects
+        //need to tell clicked item that it is clicked - set it to true
+        //set largeDiv - true
+        //when clicked again, set clicked -  false
+        //set largeDiv - false
+    };
+    this.callEventsByStatus = function(clickedItem,notClickedItems){
+        if(clickedItem.mdDivClicked){
+            clickedItem.mdDivtoLg();
+            for(var i = 0; i < notClickedItems.length;i++){
+                notClickedItems[i].mdDivtoSm();
+            }
+        }else{
+            clickedItem.lgDivtoMd();
+            for(var j = 0; j < notClickedItems.length;j++){
+                notClickedItems[j].smDivtoMd();
+            }
+        }
+
 
     };
+    this.findNonClickedItems = function(clickedItem){
+        var contentArray = [];
+        for(var i = 0; i < this.contentDivObj.length;i++){
+            if(clickedItem != this.contentDivObj[i]){
+                contentArray.push(this.contentDivObj[i]);
+            }
+        }
+        return(contentArray);
+    };
+
 }
 
 
