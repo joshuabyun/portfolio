@@ -1,48 +1,48 @@
-*{
-    font-size: 0;
-}
 body{
-    width:100vw;
     height:100vh;
+    width:100vw;
+    margin:0;
 }
-/*#contentContainer > *{*/
-    /*font-size: initial;*/
-/*}*/
-
 #contentContainer{
     height:100%;
     width:100%;
-    box-sizing: border-box;
-
-}
-#headerDiv{
-    height:10%;
-    width:100%;
     position: relative;
-    display: block;
-    box-sizing: border-box;
-
 }
 .content{
-    height:90%;
-    width: 25%;
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    transition :.8s;
+    height:50%;
+    width:50%;
+    position: absolute;
 }
-.content:hover{
-    opacity: .6;
-    transition:.5s;
+#box1{
+    top:0;
+    left:0;
+    background-color: red;
 }
-.biggerContent{
-    height:90%;
-    width: 100%;
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    transition :.8s;
+#box2{
+    top:0;
+    right:0;
+    background-color: blue;
+
 }
-.small{
-    display:none;
+#box3{
+    bottom:0;
+    left:0;
+    background-color: green;
+
+}
+#box4{
+    bottom:0;
+    right:0;
+    background-color: yellow;
+
+}
+.smallDiv{
+    height:0%;
+    width:0%;
+    transition: width 1s, height 1s;
+}
+.largerDiv{
+    height:100%;
+    width:100%;
+    transition: width 1s, height 1s;
 }
