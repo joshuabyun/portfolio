@@ -73,10 +73,15 @@ function content_template(parent){
 }
 function content_mgr_template(){
     this.dom_element;
+    this.body;
     this.contentDivObj = [];
     this.clickedDiv = null;
     this.init = function(dom_element_id){
         this.dom_element = $(dom_element_id);
+        this.body = $('body').css({
+            height:$(window).height(),
+            width:$(window).width()
+        })
     };
     this.create_content_divs = function(contentProfile){
         for(var i in contentProfile){
@@ -89,13 +94,7 @@ function content_mgr_template(){
     this.handle_click = function(clickedItem){
         console.log('clicked',clickedItem.dom_element);
         var notClickedItems = this.findNonClickedItems(clickedItem);//returned an array of objects
-        //clickedItem is an object
         this.callEventsByStatus(clickedItem,notClickedItems);
-        //differentiated clicked and not clicked objects
-        //need to tell clicked item that it is clicked - set it to true
-        //set largeDiv - true
-        //when clicked again, set clicked -  false
-        //set largeDiv - false
     };
     this.callEventsByStatus = function(clickedItem,notClickedItems){
         if(clickedItem.mdDivClicked){
@@ -109,7 +108,7 @@ function content_mgr_template(){
                 notClickedItems[j].smDivtoMd();
             }
         }
-
+        
 
     };
     this.findNonClickedItems = function(clickedItem){
