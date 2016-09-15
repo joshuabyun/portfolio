@@ -8,11 +8,7 @@ body{
     width:100%;
     position: relative;
 }
-.content{
-    height:50%;
-    width:50%;
-    position: absolute;
-}
+
 #box1{
     top:0;
     left:0;
@@ -22,7 +18,6 @@ body{
     top:0;
     right:0;
     background-color: blue;
-
 }
 #box3{
     bottom:0;
@@ -34,11 +29,16 @@ body{
     bottom:0;
     right:0;
     background-color: yellow;
-
+}
+.content{
+    height:50%;
+    width:50%;
+    position: absolute;
+    transition: width 1s, height 1s;
 }
 .smallDiv{
-    height:0%;
-    width:0%;
+    height:0;
+    width:0;
     transition: width 1s, height 1s;
 }
 .largerDiv{
