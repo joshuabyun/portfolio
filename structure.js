@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    initClickHandler()
+    initClickHandler();
+    createDefaultPageInnerDom()
 });
 
 var elementId = ['box1','box2','box3','box4'];
@@ -24,10 +25,10 @@ function initClickHandler(){
 function changeClickedDiv(clickedDivId,state){
     if(state == "toDefault"){//back to default size
         $("#"+clickedDivId).removeClass("largerDiv");
+        createDefaultPageInnerDom();
     }else{//to expand the div size
         $("#"+clickedDivId).addClass("largerDiv");
     }
-
 }
 
 //this function changes non-clicked sections
@@ -38,8 +39,26 @@ function changeNonClickedDiv(clickedDivId,state){
                $("#"+elementId[i]).removeClass("smallDiv");
            }
            else{//shrink sections
+               removeDefaultPageInnerDom();
                $("#"+elementId[i]).addClass("smallDiv");
            }
        }
     }
 }
+
+function createDefaultPageInnerDom(){
+    var box1Content = $('<div>').addClass('defaultPageMaterial').text('JOSHUA BYUN');
+    var box2Content = $('<div>').addClass('defaultPageMaterial').text('APPLCATIONS');
+    var box3Content = $('<div>').addClass('defaultPageMaterial').text('SKILLS & EXPERIENCE');
+    var box4Content = $('<div>').addClass('defaultPageMaterial').text('CONTACT');
+    $('#box1').append(box1Content);
+    $('#box2').append(box2Content);
+    $('#box3').append(box3Content);
+    $('#box4').append(box4Content);
+}
+
+function removeDefaultPageInnerDom(){
+    $('.defaultPageMaterial').addClass('fadeOut');
+    // $('.defaultPageMaterial').remove();
+}
+
