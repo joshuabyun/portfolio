@@ -9,66 +9,105 @@ body{
     width:100%;
     position: relative;
 }
-
-#box1{
-    top:0;
-    left:0;
-    background-color: red;
-}
-#box2{
-    top:0;
-    right:0;
-    background-color: blue;
-}
-#box3{
-    bottom:0;
-    left:0;
-    background-color: green;
-
-}
-#box4{
-    bottom:0;
-    right:0;
-    background-color: yellow;
-}
 .content{
     height:50%;
     width:50%;
     position: absolute;
-    opacity: 1;
-    transition: 1s;
 }
+#box1{
+    top:0;
+    left:0;
+    background-color: #2a00ff;
+}
+#box2{
+    top:0;
+    right:0;
+    background-color: #449d44;
+}
+#box3{
+    bottom:0;
+    left:0;
+    background-color: #ce8483;
+}
+#box4{
+    bottom:0;
+    right:0;
+    background-color: #edef7d;
+}
+
+
 .smallDiv{
     height:0;
     width:0;
     opacity: 0;
     transition: 1s;
 }
+.enlarge{
+    animation-name: enLarge;
+    animation-duration: 1s;
+}
+@keyframes enLarge {
+    from {
+        height:50%;
+        width:50%;
+    }
+    to {
+        height:100%;
+        width:100%;
+    }
+}
 .largerDiv{
     height:100%;
     width:100%;
-    transition: 1s;
 }
-.defaultPageMaterial{
-    text-align: center;
-    display:block;
-    position:absolute;
+.contentWrapper{
+    height:100%;
     width:100%;
-    top:50%;
-    font-size: 5vw;
-    transform:translate(0, -50%);
-    animation: fadeIn;
-    animation-duration: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color:white;
 }
-.fadeout{
-    animation: fadeOut;
-    animation-duration: 1s;
+.breakLine{
+    border:.1vh solid white;
+    width: 50%;
 }
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-@-webkit-keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
+@media screen and (max-width: 699px){
+    .content{
+        height:25%;
+        width:100%;
+        position: relative;
+    }
+    #box1{
+        background-color: #843534;
+    }
+    #box2{
+        background-color: #ffaa3e;
+    }
+    #box3{
+        background-color: #758AA8;
+    }
+    #box4{
+        background-color: #c9302c;
+    }
+
+    @keyframes enLarge {
+        from {
+            height:25%;
+            width:100%;
+        }
+        to {
+            height:100%;
+            width:100%;
+        }
+    }
+    .enlarge{
+        animation-name: enLarge;
+        animation-duration: 1s;
+    }
+    .largerDiv{
+        height:100%;
+        width:100%;
+    }
 }
