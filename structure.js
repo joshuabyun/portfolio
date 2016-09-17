@@ -2,30 +2,42 @@ $(document).ready(function(){
     initClickHandler();
 });
 
-var test;
-var testParent;
 function initClickHandler(){
-    $('.contentWrapper').off('click');
-    $('.contentWrapper').click(function(){
-        console.log('hello');
-        test = $(this);
-        testParent = $(this).parent();
-        $(this).remove();
-        test.appendTo($(testParent));
-        initClickHandler();
-    })
+    $('.content').click(function(){
+        var largeDiv = $(this);
+        var largeDivClass = largeDiv.attr('id');
+
+        var smallDiv = $('.content:not(#' + largeDivClass + ')');
+
+        largeDiv.addClass('largerDiv');
+
+        smallDiv.each(function() {
+            $(this).animate({
+                opacity: 0
+            }, 500, function () {
+                $(this).css('display', 'none');
+            });
+        });
+    });
 }
 
+function changeDivSize(){
+    var largeDiv = $(this);
+    var smallDiv = $('.content :not(this)');
+    console.log('largeDiv' , largeDiv);
+    console.log('smallDiv' ,  smallDiv);
+}
 
-function createEnlargedContent(){
+function enlargeDiv(parent){
+    $(parent).addClass('largerDiv');
+}
+function createEnlargedContent(parent){
 
 }
 function appendContent(){
-    
-}
-function removeContent(){
 
 }
+
 //document load,                                -ok
 //create 4 main sections                        -ok
     //create inner content for all sections
